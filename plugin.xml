@@ -10,6 +10,59 @@
         <param name="ios-package" value="dbcamera" />
       </feature>
     </config-file>
+
     <source-file src="src/ios/CDVdbcamera.m" />
+
+    <framework src="AVFoundation.framework" />
+    <framework src="CoreMedia.framework" />
+
+    <resource-file src="src/ios/DBCamera/Resources/DBCameraImages.xcassets" />
+
+    <header-file src="src/ios/DBCamera/DBCameraViewController.h" />
+    <source-file src="src/ios/DBCamera/DBCameraViewController.m" />
+
+    <header-file src="src/ios/DBCamera/DBCameraCollectionController.h" />
+    <source-file src="src/ios/DBCamera/DBCameraCollectionController.m" />
+
+    <header-file src="src/ios/DBCamera/DBCameraSegueViewController.h" />
+    <source-file src="src/ios/DBCamera/DBCameraSegueViewController.m" />
+
+    <header-file src="src/ios/DBCamera/DBCameraContainer.h" />
+    <source-file src="src/ios/DBCamera/DBCameraContainer.m" />
+
+    <header-file src="src/ios/DBCamera/DBCameraDelegate.h" />
+
+    <header-file src="src/ios/DBCamera/DBCameraGridView.h" />
+    <source-file src="src/ios/DBCamera/DBCameraGridView.m" />
+
+    <header-file src="src/ios/DBCamera/DBCameraImageView.h" />
+    <source-file src="src/ios/DBCamera/DBCameraImageView.m" />
+
+    <header-file src="src/ios/DBCamera/DBCameraLibrary.h" />
+    <source-file src="src/ios/DBCamera/DBCameraLibrary.m" />
+
+    <header-file src="src/ios/DBCamera/DBCameraMacros.h" />
+
+    <header-file src="src/ios/DBCamera/DBCameraManager.h" />
+    <source-file src="src/ios/DBCamera/DBCameraManager.m" />
+
+    <header-file src="src/ios/DBCamera/DBCameraSegueView.h" />
+    <source-file src="src/ios/DBCamera/DBCameraSegueView.m" />
+
+    <header-file src="src/ios/DBCamera/DBCameraView.h" />
+    <source-file src="src/ios/DBCamera/DBCameraView.m" />
+
+    <header-file src="src/ios/DBCamera/DBCollectionViewCell.h" />
+    <source-file src="src/ios/DBCamera/DBCollectionViewCell.m" />
+
+    <header-file src="src/ios/DBCamera/DBCollectionViewFlowLayout.h" />
+    <source-file src="src/ios/DBCamera/DBCollectionViewFlowLayout.m" />
+
+    <header-file src="src/ios/DBCamera/DBLibraryManager.h" />
+    <source-file src="src/ios/DBCamera/DBLibraryManager.m" />
+
+    <header-file src="src/ios/DBCamera/UIImage+Crop.h" />
+    <source-file src="src/ios/DBCamera/UIImage+Crop.m" />
+
   </platform>
 </plugin>
