@@ -1,12 +1,16 @@
 /********* CDVdbcamera.m Cordova Plugin Implementation *******/
 
-#import <Cordova/CDV.h>
+#import <UIKit/UIKit.h>
+#import "Cordova/CDV.h"
+#import "DBCameraViewController.h"
 
-@interface CDVdbcamera : CDVPlugin {
+
+@interface CDVdbcamera : CDVPlugin <DBCameraViewControllerDelegate>{
   // Member variables go here.
 }
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command;
+- (void)sweetPhoto:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation CDVdbcamera
@@ -23,6 +27,38 @@
     }
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+
+
+
+- (void)sweetPhoto:(CDVInvokedUrlCommand*)command
+{
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[DBCameraViewController initWithDelegate:self]];
+    [nav setNavigationBarHidden:YES];
+    [self.viewController presentViewController:nav animated:YES completion:nil];
+}
+
+
+
+
+
+#pragma mark - DBCameraViewControllerDelegate
+
+- (void) dismissCamera
+{
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) captureImageDidFinish:(UIImage *)image withMetadata:(NSDictionary *)metadata
+{
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+#endif
+    DetailViewController *detail = [[DetailViewController alloc] init];
+    [detail setDetailImage:image];
+    [self.navigationController pushViewController:detail animated:NO];
+    [self.presentedViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
