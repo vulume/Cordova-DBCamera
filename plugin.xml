@@ -6,8 +6,8 @@
   </js-module>
   <platform name="ios">
     <config-file parent="/*" target="config.xml">
-      <feature name="dbcamera">
-        <param name="ios-package" value="dbcamera" />
+      <feature name="DBCamera">
+        <param name="ios-package" value="CDVdbcamera" />
       </feature>
     </config-file>
 
@@ -15,6 +15,7 @@
 
     <framework src="AVFoundation.framework" />
     <framework src="CoreMedia.framework" />
+    <framework src="QuartzCore.framework" />
 
     <resource-file src="src/ios/DBCamera/Resources/DBCameraImages.xcassets" />
 
