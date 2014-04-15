@@ -18,6 +18,7 @@
     <framework src="QuartzCore.framework" />
 
     <resource-file src="src/ios/DBCamera/Resources/DBCameraImages.xcassets" />
+    <resource-file src="src/ios/DBCamera/Localizations/en.lproj/DBCamera.strings" />
 
     <header-file src="src/ios/DBCamera/DBCameraViewController.h" />
     <source-file src="src/ios/DBCamera/DBCameraViewController.m" />
