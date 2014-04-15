@@ -1,20 +1,21 @@
 /********* CDVdbcamera.m Cordova Plugin Implementation *******/
 
-#import <UIKit/UIKit.h>
 #import "Cordova/CDV.h"
 #import "DBCameraViewController.h"
 #import "DBCameraContainer.h"
 
+//#import "CustomCamera.h"
+
 #define CDV_DBCAMERA_PHOTO_PREFIX @"cdv_dbcamera_photo_"
 
-@interface CDVdbcamera : CDVPlugin <DBCameraViewControllerDelegate>{
-  // Member variables go here.
-}
+@interface CDVdbcamera : CDVPlugin <DBCameraViewControllerDelegate>{}
 
 @property (copy) NSString* callbackId;
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command;
 - (void)openCamera:(CDVInvokedUrlCommand*)command;
+//- (void)openCustomCamera:(CDVInvokedUrlCommand*)command;
+- (void)openCameraWithoutSegue:(CDVInvokedUrlCommand*)command;
 - (void)openCameraWithoutContainer:(CDVInvokedUrlCommand*)command;
 - (void)cleanup:(CDVInvokedUrlCommand*)command;
 @end
@@ -44,6 +45,28 @@
     [self.viewController presentViewController:nav animated:YES completion:nil];
 }
 
+//- (void)openCustomCamera:(CDVInvokedUrlCommand*)command
+//{
+//    self.callbackId = command.callbackId;
+//    CustomCamera *camera = [CustomCamera initWithFrame:[[UIScreen mainScreen] bounds]];
+//    [camera buildInterface];
+//
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[DBCameraViewController alloc] initWithDelegate:self cameraView:camera]];
+//    [nav setNavigationBarHidden:YES];
+//    [self.viewController presentViewController:nav animated:YES completion:nil];
+//}
+
+- (void)openCameraWithoutSegue:(CDVInvokedUrlCommand*)command
+{
+    self.callbackId = command.callbackId;
+    DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
+    [cameraController setUseCameraSegue:NO];
+    DBCameraContainer *container = [[DBCameraContainer alloc] initWithDelegate:self];
+    [container setCameraViewController:cameraController];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
+    [nav setNavigationBarHidden:YES];
+    [self.viewController presentViewController:nav animated:YES completion:nil];
+}
 
 - (void)openCameraWithoutContainer:(CDVInvokedUrlCommand*)command
 {

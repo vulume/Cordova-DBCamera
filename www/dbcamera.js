@@ -1,27 +1,42 @@
 var exec = require('cordova/exec');
 
+_logMessage = function(message){
+  return console.log(message);
+};
+
 exports.coolMethod = function(arg0, success, error) {
+    success = success || _logMessage;
+    error = error || _logMessage;
     exec(success, error, "DBCamera", "coolMethod", [arg0]);
 };
 
-exports.openCameraWithoutContainer = function() {
-
-    var suc = function(){ console.log('SUCCESS');};
-    var err = function(){ console.log('ERROR');};
-    var args = [0, 1, 2];
-    console.log('got here');
-    exec(suc, err, "DBCamera", "openCameraWithoutContainer", args);
+exports.openCamera = function(success, error) {
+    success = success || _logMessage;
+    error = error || _logMessage;
+    exec(success, error, "DBCamera", "openCamera", []);
 };
 
-exports.openCamera = function(successCallback) {
+exports.openCustomCamera = function(success, error) {
+    // success = success || _logMessage;
+    // error = error || _logMessage;
+    // exec(success, error, "DBCamera", "openCustomCamera", []);
+    return console.log("You have not implemented a custom camera.");
+};
 
-    // var suc = function(){ console.log('SUCCESS');};
-    var err = function(){ console.log('ERROR');};
-    var args = [0, 1, 2];
-    console.log('got here');
-    exec(successCallback, err, "DBCamera", "openCamera", args);
+exports.openCameraWithoutSegue = function(success, error) {
+    success = success || _logMessage;
+    error = error || _logMessage;
+    exec(success, error, "DBCamera", "openCameraWithoutSegue", []);
+};
+
+exports.openCameraWithoutContainer = function(success, error) {
+    success = success || _logMessage;
+    error = error || _logMessage;
+    exec(success, error, "DBCamera", "openCameraWithoutContainer", []);
 };
 
 exports.cleanup = function(success, error) {
+    success = success || _logMessage;
+    error = error || _logMessage;
     exec(success, error, "DBCamera", "cleanup", []);
 };
