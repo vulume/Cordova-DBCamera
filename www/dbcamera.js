@@ -4,12 +4,6 @@ _logMessage = function(message){
   return console.log(message);
 };
 
-exports.coolMethod = function(arg0, success, error) {
-    success = success || _logMessage;
-    error = error || _logMessage;
-    exec(success, error, "DBCamera", "coolMethod", [arg0]);
-};
-
 exports.openCamera = function(success, error) {
     success = success || _logMessage;
     error = error || _logMessage;
