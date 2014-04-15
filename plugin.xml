@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.vulume.dbcamera" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="com.vulume.cordova.dbcamera" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
   <name>dbcamera</name>
+  <description>Plugman compatible wrapper for DBCamera. </description>
+  <author>Chris Ewald, Vulume Inc.</author>
+  <keywords>camera</keywords>
+  <license>MIT</license>
   <js-module name="dbcamera" src="www/dbcamera.js">
     <clobbers target="cordova.plugins.dbcamera" />
   </js-module>
