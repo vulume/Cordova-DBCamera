@@ -104,16 +104,16 @@
     } while ([fileMgr fileExistsAtPath:filePath]);
 
     CDVPluginResult* pluginResult = nil;
+
     if (![data writeToFile:filePath options:NSAtomicWrite error:&err]) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:[err localizedDescription]];
     } else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[[NSURL fileURLWithPath:filePath] absoluteString]];
+        NSMutableDictionary* resultDictionary = [[NSMutableDictionary alloc] initWithDictionary:metadata];
+        [resultDictionary setValue:[[NSURL fileURLWithPath:filePath] absoluteString] forKey:@"imageURL"];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultDictionary];
     }
 
-
-//    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:metadata];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
-
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -121,7 +121,5 @@
  {
      [self.viewController dismissViewControllerAnimated:YES completion:nil];
  }
-
-
 
 @end
