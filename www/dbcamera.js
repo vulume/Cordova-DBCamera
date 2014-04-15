@@ -13,11 +13,11 @@ exports.openCameraWithoutContainer = function() {
     exec(suc, err, "DBCamera", "openCameraWithoutContainer", args);
 };
 
-exports.openCamera = function() {
+exports.openCamera = function(successCallback) {
 
-    var suc = function(){ console.log('SUCCESS');};
+    // var suc = function(){ console.log('SUCCESS');};
     var err = function(){ console.log('ERROR');};
     var args = [0, 1, 2];
     console.log('got here');
-    exec(suc, err, "DBCamera", "openCamera", args);
+    exec(successCallback, err, "DBCamera", "openCamera", args);
 };
