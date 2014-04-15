@@ -68,7 +68,7 @@
 
     while ((fileName = [directoryEnumerator nextObject])) {
         // only delete the files we created
-        if (![fileName hasPrefix:CDV_PHOTO_PREFIX]) {
+        if (![fileName hasPrefix:CDV_DBCAMERA_PHOTO_PREFIX]) {
             continue;
         }
         NSString* filePath = [tempDirectoryPath stringByAppendingPathComponent:fileName];
