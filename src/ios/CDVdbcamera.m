@@ -16,6 +16,7 @@
 - (void)coolMethod:(CDVInvokedUrlCommand*)command;
 - (void)openCamera:(CDVInvokedUrlCommand*)command;
 - (void)openCameraWithoutContainer:(CDVInvokedUrlCommand*)command;
+- (void)cleanup:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation CDVdbcamera
@@ -52,7 +53,40 @@
     [self.viewController presentViewController:nav animated:YES completion:nil];
 }
 
+- (void)cleanup:(CDVInvokedUrlCommand*)command
+{
+    // empty the tmp directory
+    NSFileManager* fileMgr = [[NSFileManager alloc] init];
+    NSError* err = nil;
+    BOOL hasErrors = NO;
 
+    // clear contents of NSTemporaryDirectory
+    NSString* tempDirectoryPath = NSTemporaryDirectory();
+    NSDirectoryEnumerator* directoryEnumerator = [fileMgr enumeratorAtPath:tempDirectoryPath];
+    NSString* fileName = nil;
+    BOOL result;
+
+    while ((fileName = [directoryEnumerator nextObject])) {
+        // only delete the files we created
+        if (![fileName hasPrefix:CDV_PHOTO_PREFIX]) {
+            continue;
+        }
+        NSString* filePath = [tempDirectoryPath stringByAppendingPathComponent:fileName];
+        result = [fileMgr removeItemAtPath:filePath error:&err];
+        if (!result && err) {
+            NSLog(@"Failed to delete: %@ (error: %@)", filePath, err);
+            hasErrors = YES;
+        }
+    }
+
+    CDVPluginResult* pluginResult;
+    if (hasErrors) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:@"One or more files failed to be deleted."];
+    } else {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    }
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
 
 #pragma mark - DBCameraViewControllerDelegate
 
@@ -87,5 +121,7 @@
  {
      [self.viewController dismissViewControllerAnimated:YES completion:nil];
  }
+
+
 
 @end

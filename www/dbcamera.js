@@ -21,3 +21,7 @@ exports.openCamera = function(successCallback) {
     console.log('got here');
     exec(successCallback, err, "DBCamera", "openCamera", args);
 };
+
+exports.cleanup = function(success, error) {
+    exec(success, error, "DBCamera", "cleanup", []);
+};
