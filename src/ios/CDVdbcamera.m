@@ -99,7 +99,7 @@
 
 - (void) captureImageDidFinish:(UIImage *)image withMetadata:(NSDictionary *)metadata
 {
-    NSData* data = UIImageJPEGRepresentation(image, 1.0);
+    NSData* data = UIImageJPEGRepresentation(image, 0.3);
     NSString* docsPath = [NSTemporaryDirectory()stringByStandardizingPath];
     NSError* err = nil;
     NSFileManager* fileMgr = [[NSFileManager alloc] init];
