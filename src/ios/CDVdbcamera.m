@@ -99,7 +99,7 @@
 
 - (void) captureImageDidFinish:(UIImage *)image withMetadata:(NSDictionary *)metadata
 {
-    NSData* data = UIImageJPEGRepresentation(image, 0.3);
+    NSData* data = UIImageJPEGRepresentation(image, 1.0);
     NSString* docsPath = [NSTemporaryDirectory()stringByStandardizingPath];
     NSError* err = nil;
     NSFileManager* fileMgr = [[NSFileManager alloc] init];
@@ -115,7 +115,7 @@
     if (![data writeToFile:filePath options:NSAtomicWrite error:&err]) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsString:[err localizedDescription]];
     } else {
-        NSMutableDictionary* resultDictionary = [[NSMutableDictionary alloc] initWithDictionary:metadata];
+        NSMutableDictionary* resultDictionary = [[NSMutableDictionary alloc] init];
         [resultDictionary setValue:[[NSURL fileURLWithPath:filePath] absoluteString] forKey:@"imageURL"];
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultDictionary];
     }
