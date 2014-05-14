@@ -1,0 +1,29 @@
+platform :ios, '6.0'
+pod 'DBCamera', git: 'git://github.com/danielebogo/dbcamera.git'
+
+post_install do |installer|
+  require './cocoapod-to-cordova'
+  build = CocoapodToCordovaBuilder.new('DBCamera', installer.project)
+  build.configure({
+    product: { name: 'libdbcamera.a'},
+    localization: 'en',
+    headers: {
+      exclude: [
+        'DBCameraBaseCropViewController+Private.h',
+        'DBCameraBaseCropViewController.h',
+        'DBCameraCollectionViewController.h',
+        'DBCameraCropView.h',
+        'DBCameraGridView.h',
+        'DBCameraLibraryViewController.h',
+        'DBCameraMacros.h',
+        'DBCameraManager.h',
+        'DBCameraSegueViewController.h',
+        'DBCollectionViewCell.h',
+        'DBCollectionViewFlowLayout.h',
+        'DBLibraryManager.h',
+        'UIImage+Crop.h'
+      ]
+    }
+  })
+  build.update_plugin!
+end
