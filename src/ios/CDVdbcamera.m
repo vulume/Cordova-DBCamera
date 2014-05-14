@@ -2,8 +2,10 @@
 
 #import "Cordova/CDV.h"
 #import "DBCameraViewController.h"
-#import "DBCameraContainer.h"
+#import "DBCameraContainerViewController.h"
+#import "DBCameraView.h"
 
+// Uncomment custom camera related to start implementing your own
 //#import "CustomCamera.h"
 
 #define CDV_DBCAMERA_PHOTO_PREFIX @"cdv_dbcamera_photo_"
@@ -13,6 +15,7 @@
 @property (copy) NSString* callbackId;
 
 - (void)openCamera:(CDVInvokedUrlCommand*)command;
+- (void)openCameraWithSettings:(CDVInvokedUrlCommand*)command;
 //- (void)openCustomCamera:(CDVInvokedUrlCommand*)command;
 - (void)openCameraWithoutSegue:(CDVInvokedUrlCommand*)command;
 - (void)openCameraWithoutContainer:(CDVInvokedUrlCommand*)command;
@@ -24,7 +27,20 @@
 - (void)openCamera:(CDVInvokedUrlCommand*)command
 {
     self.callbackId = command.callbackId;
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[DBCameraContainer alloc] initWithDelegate:self]];
+    DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraContainer];
+    [nav setNavigationBarHidden:YES];
+    [self.viewController presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)openCameraWithSettings:(CDVInvokedUrlCommand*)command
+{
+    self.callbackId = command.callbackId;
+    DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self cameraSettingsBlock:^(DBCameraView *cameraView) {
+        [cameraView.gridButton setHidden:YES];
+    }];
+
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraContainer];
     [nav setNavigationBarHidden:YES];
     [self.viewController presentViewController:nav animated:YES completion:nil];
 }
@@ -43,9 +59,9 @@
 - (void)openCameraWithoutSegue:(CDVInvokedUrlCommand*)command
 {
     self.callbackId = command.callbackId;
+    DBCameraContainerViewController *container = [[DBCameraContainerViewController alloc] initWithDelegate:self];
     DBCameraViewController *cameraController = [DBCameraViewController initWithDelegate:self];
     [cameraController setUseCameraSegue:NO];
-    DBCameraContainer *container = [[DBCameraContainer alloc] initWithDelegate:self];
     [container setCameraViewController:cameraController];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
     [nav setNavigationBarHidden:YES];

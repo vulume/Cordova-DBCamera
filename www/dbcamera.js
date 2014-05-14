@@ -10,6 +10,12 @@ exports.openCamera = function(success, error) {
     exec(success, error, "DBCamera", "openCamera", []);
 };
 
+exports.openCameraWithSettings = function(success, error) {
+    success = success || _logMessage;
+    error = error || _logMessage;
+    exec(success, error, "DBCamera", "openCameraWithSettings", []);
+};
+
 exports.openCustomCamera = function(success, error) {
     // success = success || _logMessage;
     // error = error || _logMessage;
