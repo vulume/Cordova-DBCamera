@@ -7,7 +7,7 @@ https://github.com/danielebogo/DBCamera
 Install Instructions
 ---------------------
 
- * Install this plugin using this git repo url `cordova plugin add ...`
+ * Install this plugin using plugman / cordova / phonegap `cordova plugin add com.vulume.cordova.dbcamera`
 
 Usage
 -------
@@ -33,5 +33,9 @@ cordova.plugins.dbcamera.openCamera(success);
 ```
 
 There is a template for the openCameraWithSettings and openCustomCamera methods that are ready to be forked and customized.
+
+Updating
+---------
+This project uses https://github.com/mkcode/cocoapod-to-cordova to manage updating. See that projects README for instructions to update to a new version of DBCamera.
 
 MIT Licensed
