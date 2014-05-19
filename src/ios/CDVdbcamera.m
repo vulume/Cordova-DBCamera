@@ -37,7 +37,7 @@
 - (void)openCameraWithSettings:(CDVInvokedUrlCommand*)command
 {
     self.callbackId = command.callbackId;
-    DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self cameraSettingsBlock:^(DBCameraView *cameraView) {
+    DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self cameraSettingsBlock:^(DBCameraView *cameraView, DBCameraContainerViewController *container) {
         [cameraView.gridButton setHidden:YES];
     }];
 
