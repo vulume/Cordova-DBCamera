@@ -1,19 +1,19 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='UTF-8'?> 
 <plugin id='com.vulume.cordova.dbcamera' version='0.0.2' xmlns='http://apache.org/cordova/ns/plugins/1.0' xmlns:android='http://schemas.android.com/apk/res/android'>
   <name>
-     dbcamera
+     dbcamera 
   </name>
   <description>
-     Plugman compatible wrapper for DBCamera.
+     Plugman compatible wrapper for DBCamera. 
   </description>
   <author>
-     Chris Ewald, Vulume Inc.
+     Chris Ewald, Vulume Inc. 
   </author>
   <keywords>
-     camera, ios
+     camera, ios 
   </keywords>
   <license>
-     MIT
+     MIT 
   </license>
   <js-module name='dbcamera' src='www/dbcamera.js'>
     <clobbers target='cordova.plugins.dbcamera'/>
