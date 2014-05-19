@@ -140,13 +140,13 @@
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
- - (void) dismissCamera
- {
+- (void) dismissCamera
+{
     NSMutableDictionary* resultDictionary = [[NSMutableDictionary alloc] init];
     [resultDictionary setValue:@"" forKey:@"imageURL"];
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultDictionary];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
- }
+}
 
 @end
