@@ -10,7 +10,7 @@
 
 #define CDV_DBCAMERA_PHOTO_PREFIX @"cdv_dbcamera_photo_"
 
-@interface CDVdbcamera : CDVPlugin <DBCameraViewControllerDelegate>{}
+@interface CDVdbcamera : CDVPlugin <DBCameraViewControllerDelegate, UINavigationControllerDelegate>{}
 
 @property (copy) NSString* callbackId;
 
@@ -147,6 +147,13 @@
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:resultDictionary];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UINavigationControllerDelegate
+
+- (NSUInteger)navigationControllerSupportedInterfaceOrientations:(UINavigationController *)navigationController;
+{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end
