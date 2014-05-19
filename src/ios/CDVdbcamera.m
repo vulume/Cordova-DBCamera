@@ -29,6 +29,7 @@
     self.callbackId = command.callbackId;
     DBCameraContainerViewController *cameraContainer = [[DBCameraContainerViewController alloc] initWithDelegate:self];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraContainer];
+    nav.delegate = self;
     [nav setNavigationBarHidden:YES];
     [self.viewController presentViewController:nav animated:YES completion:nil];
 }
@@ -41,6 +42,7 @@
     }];
 
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:cameraContainer];
+    nav.delegate = self;
     [nav setNavigationBarHidden:YES];
     [self.viewController presentViewController:nav animated:YES completion:nil];
 }
@@ -64,6 +66,7 @@
     [cameraController setUseCameraSegue:NO];
     [container setCameraViewController:cameraController];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:container];
+    nav.delegate = self;
     [nav setNavigationBarHidden:YES];
     [self.viewController presentViewController:nav animated:YES completion:nil];
 }
@@ -72,6 +75,7 @@
 {
     self.callbackId = command.callbackId;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[DBCameraViewController initWithDelegate:self]];
+    nav.delegate = self;
     [nav setNavigationBarHidden:YES];
     [self.viewController presentViewController:nav animated:YES completion:nil];
 }
