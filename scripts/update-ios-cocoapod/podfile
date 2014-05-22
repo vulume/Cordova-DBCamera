@@ -21,7 +21,8 @@ post_install do |installer|
         'DBCollectionViewCell.h',
         'DBCollectionViewFlowLayout.h',
         'DBLibraryManager.h',
-        'UIImage+Crop.h'
+        'UIImage+Crop.h',
+        'UIImage+TintColor.h'
       ]
     }
   })
