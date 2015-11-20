@@ -1,3 +1,7 @@
+THIS PROJECT IS NO LONGER MAINTAINED
+====================================
+Left here for reference. Feel free to fork and take it over if you like.
+
 Cordova-DBCamera
 ================
 
